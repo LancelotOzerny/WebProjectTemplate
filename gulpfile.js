@@ -87,24 +87,26 @@ const browserTasker = new class
                 baseDir: config.outputDir
             },
             files: [
-                config.outputDir + '**/*.html',
-                config.outputDir + '**/*.css',
-                config.outputDir + '**/*.js'
+                config.outputDir + '/**/*.html',
+                config.outputDir + '/**/*.css',
+                config.outputDir + '/**/*.js',
             ],
+            notify: false,
             port: 3000,
             open: true,
-            notify: false,
         });
     }
 
-    reloadPage()
+    reloadPage(done)
     {
-        browserSync.reload({ stream: false });
+        browserSync.reload();
+        done();
     }
 
-    updatePage()
+    updatePage(done)
     {
-        browserSync.reload({ stream: true });
+        browserSync.reload({stream: true});
+        done();
     }
 }
 
