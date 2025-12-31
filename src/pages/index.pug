@@ -1,6 +1,32 @@
-extends ../layouts/main
+extends ./../layouts/main
+
+include ./../components/button/button
 
 block content
     div.page__block.page__block--spaced
         div.page__container
             h1 Start to work!
+
+    div.page__block.page__block--spaced
+        div.page__container
+            p.page-title Buttons
+
+            div
+                +button('Press me', 'btn--rounded btn--upper btn--large btn--white')
+                +button('Press me', 'btn--circle btn--upper btn--large btn--dark')
+                +button('Press me', 'btn--upper btn--large btn--info')
+                +button('Press me', 'btn--rounded btn--upper btn--large btn--danger')
+                +button('Press me', 'btn--circle btn--upper btn--large btn--warning')
+                +button('Press me', 'btn--upper btn--large btn--success')
+                +button('Press me', 'btn--rounded btn--upper btn--large btn--secondary')
+                +button('Press me', 'btn--circle btn--upper btn--large btn--blue')
+
+            div
+                +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--white')
+                +button('Press me', 'btn--outline btn--circle btn--upper btn--large btn--dark')
+                +button('Press me', 'btn--outline btn--upper btn--large btn--info')
+                +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--danger')
+                +button('Press me', 'btn--outline btn--circle btn--upper btn--large btn--warning')
+                +button('Press me', 'btn--outline btn--upper btn--large btn--success')
+                +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--secondary')
+                +button('Press me', 'btn--outline btn--circle btn--upper btn--large btn--blue')

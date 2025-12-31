@@ -1,4 +1,285 @@
-.btn
-{
+@theme-blue-bg: linear-gradient(120deg, #007acc 0%, #00d4ff 100%);
+@theme-blue-color: #fff;
 
+@theme-white-bg: #fff;
+@theme-white-color: #222;
+
+@theme-dark-bg: #222;
+@theme-dark-color: #eee;
+
+@theme-info-bg: #1d9bef;
+@theme-info-color: #fff;
+
+@theme-danger-bg: #ef1d1d;
+@theme-danger-color: #fff;
+
+@theme-warning-bg: #efec1d;
+@theme-warning-color: #222;
+
+@theme-success-bg: #1defbe;
+@theme-success-color: #222;
+
+@theme-secondary-bg: #6c7981;
+@theme-secondary-color: #fff;
+
+.btn {
+  display: inline-block;
+  font-size: 1rem;
+  box-shadow: 0 0 2px #222;
+  border-radius: 2px;
+  transition: .1s;
+
+  /* FORM */
+
+  &--rounded {
+    border-radius: 5px;
+  }
+
+  &--circle {
+    border-radius: 500px;
+  }
+
+  /* SIZE */
+
+  &, &--medium {
+    padding: 5px 10px;
+  }
+
+  &--small {
+    padding: 2px 5px;
+  }
+
+  &--large {
+    padding: 10px 20px;
+  }
+
+  /* ANIMATIONS */
+
+  &:hover {
+    filter: sepia(50%);
+  }
+
+  &:active {
+    transform: translateY(5px);
+  }
+
+  /* TEXT */
+
+  &--upper {
+    text-transform: uppercase;
+  }
+
+  /* THEMES */
+
+  &--white {
+    background-color: @theme-white-bg;
+    color: @theme-white-color;
+  }
+
+  &--dark {
+    background-color: @theme-dark-bg;
+    color: @theme-dark-color;
+  }
+
+  &--info {
+    background-color: @theme-info-bg;
+    color: @theme-info-color;
+  }
+
+  &--danger {
+    background-color: @theme-danger-bg;
+    color: @theme-danger-color;
+  }
+
+  &--warning {
+    background-color: @theme-warning-bg;
+    color: @theme-warning-color;
+  }
+
+  &--success {
+    background-color: @theme-success-bg;
+    color: @theme-success-color;
+  }
+
+  &--secondary {
+    background-color: @theme-secondary-bg;
+    color: @theme-secondary-color;
+  }
+
+  /* OUTLINE */
+
+  &--outline {
+    background: none;
+    color: #222;
+    border-style: solid;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: .2s;
+
+    &:hover
+    {
+      box-shadow: 0 0 4px #222;
+      filter: none;
+    }
+
+    &::before
+    {
+      content: '';
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+
+      z-index: -1;
+      transition: .3s;
+    }
+
+    &.btn--white
+    {
+      &::before
+      {
+        background: @theme-white-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-white-color;
+      }
+    }
+
+    &.btn--dark
+    {
+      &::before
+      {
+        background: @theme-dark-bg;
+      }
+    }
+
+    &:hover::before
+    {
+      right: 0;
+    }
+
+    &:hover
+    {
+      color: @theme-dark-color;
+    }
+
+    &.btn--info
+    {
+      &::before
+      {
+        background: @theme-info-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-info-color;
+      }
+    }
+
+    &.btn--danger
+    {
+      &::before
+      {
+        background: @theme-danger-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-danger-color;
+      }
+    }
+
+    &.btn--warning
+    {
+      &::before
+      {
+        background: @theme-warning-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-warning-color;
+      }
+    }
+
+    &.btn--success
+    {
+      &::before
+      {
+        background: @theme-success-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-success-color;
+      }
+    }
+
+    &.btn--secondary
+    {
+      &::before
+      {
+        background: @theme-secondary-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-secondary-color;
+      }
+    }
+
+    &.btn--blue
+    {
+      &::before
+      {
+        background: @theme-blue-bg;
+      }
+
+      &:hover::before
+      {
+        right: 0;
+      }
+
+      &:hover
+      {
+        color: @theme-blue-color;
+      }
+    }
+  }
 }
