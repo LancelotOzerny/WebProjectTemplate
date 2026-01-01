@@ -1,0 +1,91 @@
+@anim-gradient-blue: linear-gradient(120deg, #007acc 0%, #00d4ff 100%);
+@anim-gradient-before: linear-gradient(135deg, #007acc 0%, #00d4ff00 100%);
+@anim-gradient-after: linear-gradient(135deg, #007acc 0%, #00d4ff00 100%);
+
+@primary-color: #2c3e50;
+
+.page-title
+{
+  display: inline-block;
+  font-weight: 700;
+  color: @primary-color;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  font-size: 3rem;
+  transition: .45s;
+
+  position: relative;
+
+  &--large
+  {
+    font-size: 3.5rem;
+  }
+
+  &--medium
+  {
+    font-size: 3rem;
+  }
+
+  &--small
+  {
+    font-size: 2.5rem;
+  }
+
+  &--animated
+  {
+    cursor: pointer;
+    position: relative;
+
+    margin-bottom: 20px;
+
+    &::before, &::after
+    {
+      content: '';
+
+      position: absolute;
+      left: 0;
+
+      transition: .55s;
+      border-radius: 15px 15px 15px 15px;
+    }
+
+    &::before
+    {
+      bottom: -5px;
+      background: @anim-gradient-before;
+      width: 25%;
+      height: 5px;
+    }
+
+    &::after
+    {
+      bottom: -15px;
+      background: @anim-gradient-after;
+      width: 15%;
+      height: 3px;
+    }
+  }
+
+  &__wrapper:has(.page-title.active)
+  {
+    transition: .5s;
+
+    &:has(.page-title--animated)
+    {
+      padding-left: 10%;
+
+      .page-title--animated::before
+      {
+        width: 100%;
+        background: @anim-gradient-blue;
+      }
+
+      .page-title--animated::after
+      {
+        width: 75%;
+        background: @anim-gradient-blue;
+        left: calc(25% / 2);
+      }
+    }
+  }
+}

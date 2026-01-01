@@ -1,6 +1,7 @@
 extends ./../layouts/main
 
 include ./../components/button/button
+include ./../components/page-title/page-title
 
 block content
     div.page__block.page__block--spaced
@@ -9,7 +10,19 @@ block content
 
     div.page__block.page__block--spaced
         div.page__container
-            p.page-title Buttons
+            p.page-title Заголовки
+
+            +title("Большой заголовок", "page-title--large")
+            +title("Обычный заголовок")
+            +title("Средний заголовок", "page-title--medium")
+            +title("Маленький заголовок", "page-title--small")
+
+            +title("Заголовок с анимацией", "page-title--animated")
+            +title("Заголовок с анимацией", "page-title--animated active")
+
+
+        div.page__container
+            p.page-title Кнопки
 
             div
                 +button('Press me', 'btn--rounded btn--upper btn--large btn--white')
