@@ -1,0 +1,23 @@
+extends ./../../layouts/main
+
+include ./../../components/button/button
+include ./../../components/page-title/page-title
+
+block content
+
+    div.page__block.py-5
+        div.page__container
+            form.form(action="#" method="POST")
+                +title('Авторизация', 'page-title--small text--center mx-auto')
+
+                .form__group
+                    label.form__label.form__label--required(for="name") Имя
+                    input.form__input(type="text" id="name" name="name" required)
+                    p.form__error.is-visible Поле обязательно для заполнения
+
+                .form__group
+                    label.form__label(for="email") Email
+                    input.form__input(type="email" id="email" name="email")
+
+                .form__group
+                    +button('Войти', 'btn--upper btn--large btn--info text--center')
