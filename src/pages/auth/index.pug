@@ -5,18 +5,19 @@ include ./../../components/page-title/page-title
 
 block content
 
-    div.page__block.py-5(style="min-height: 100vh; display: grid; align-items: center;").theme--blue.text--dark
+    div.page__block.py-5
         div.page__container
             form.form(action="#" method="POST")
                 +title('Авторизация', 'page-title--small text--center mx-auto')
 
                 .form__group
-                    label.form__label.form__label--required(for="email") Email
-                    input.form__input(type="email" id="email" name="email" required)
+                    label.form__label.form__label--required(for="name") Имя
+                    input.form__input(type="text" id="name" name="name" required)
+                    p.form__error.is-visible Поле обязательно для заполнения
 
                 .form__group
-                    label.form__label(for="password") Пароль
-                    input.form__input(type="password" id="password" name="password" required)
+                    label.form__label(for="email") Email
+                    input.form__input(type="email" id="email" name="email")
 
                 .form__group
-                    +button('Войти', 'btn--upper btn--large btn--info text--center mt-2 py-2')
+                    +button('Войти', 'btn--upper btn--large btn--info text--center')

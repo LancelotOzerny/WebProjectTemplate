@@ -4,42 +4,76 @@ include ./../components/button/button
 include ./../components/page-title/page-title
 
 block content
-    div.page__block.page__block--spaced
-        div.page__container
-            h1 Start to work!
 
-    div.page__block.page__block--spaced
+    div.page__block.py-5
         div.page__container
-            p.page-title Заголовки
+            +title("Заголовки", "page-title--animated")
 
             +title("Большой заголовок", "page-title--large")
             +title("Обычный заголовок")
             +title("Средний заголовок", "page-title--medium")
             +title("Маленький заголовок", "page-title--small")
 
-            +title("Заголовок с анимацией", "page-title--animated")
-            +title("Заголовок с анимацией", "page-title--animated active")
-
-
+    div.page__block.py-5
         div.page__container
-            p.page-title Кнопки
-
             div
-                +button('Press me', 'btn--rounded btn--upper btn--large btn--white')
-                +button('Press me', 'btn--circle btn--upper btn--large btn--dark')
-                +button('Press me', 'btn--upper btn--large btn--info')
-                +button('Press me', 'btn--rounded btn--upper btn--large btn--danger')
-                +button('Press me', 'btn--circle btn--upper btn--large btn--warning')
-                +button('Press me', 'btn--upper btn--large btn--success')
-                +button('Press me', 'btn--rounded btn--upper btn--large btn--secondary')
-                +button('Press me', 'btn--circle btn--upper btn--large btn--blue')
+                +title("Кнопки", "page-title--animated")
 
-            div
-                +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--white')
-                +button('Press me', 'btn--outline btn--circle btn--upper btn--large btn--dark')
-                +button('Press me', 'btn--outline btn--upper btn--large btn--info')
-                +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--danger')
-                +button('Press me', 'btn--outline btn--circle btn--upper btn--large btn--warning')
-                +button('Press me', 'btn--outline btn--upper btn--large btn--success')
-                +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--secondary')
-                +button('Press me', 'btn--outline btn--circle btn--upper btn--large btn--blue')
+                div.mt-2
+                    +button('Press me', 'btn--rounded btn--upper btn--large btn--white')
+                    +button('Press me', 'm-1 btn--circle btn--upper btn--large btn--dark')
+                    +button('Press me', 'm-1 btn--upper btn--large btn--info')
+                    +button('Press me', 'm-1 btn--rounded btn--upper btn--large btn--danger')
+                    +button('Press me', 'm-1 btn--circle btn--upper btn--large btn--warning')
+                    +button('Press me', 'm-1 btn--upper btn--large btn--success')
+                    +button('Press me', 'm-1 btn--rounded btn--upper btn--large btn--secondary')
+                    +button('Press me', 'm-1 btn--circle btn--upper btn--large btn--blue')
+
+                div.mt-2
+                    +button('Press me', 'btn--outline btn--rounded btn--upper btn--large btn--white')
+                    +button('Press me', 'm-1 btn--outline btn--circle btn--upper btn--large btn--dark')
+                    +button('Press me', 'm-1 btn--outline btn--upper btn--large btn--info')
+                    +button('Press me', 'm-1 btn--outline btn--rounded btn--upper btn--large btn--danger')
+                    +button('Press me', 'm-1 btn--outline btn--circle btn--upper btn--large btn--warning')
+                    +button('Press me', 'm-1 btn--outline btn--upper btn--large btn--success')
+                    +button('Press me', 'm-1 btn--outline btn--rounded btn--upper btn--large btn--secondary')
+                    +button('Press me', 'm-1 btn--outline btn--circle btn--upper btn--large btn--blue')
+
+    div.page__block.py-5
+        div.page__container
+            +title("Формы", "page-title--animated mb-5")
+
+            div(style="display: grid; grid-template-columns: 1fr 1fr; justify-items: start;")
+                div
+                    +title("Светлая форма")
+
+                    form.form(action="#" method="POST")
+                        .form__group
+                            label.form__label.form__label--required(for="name") Имя
+                            input.form__input(type="text" id="name" name="name" required)
+                            p.form__error.is-visible Поле обязательно для заполнения
+
+                        .form__group
+                            label.form__label(for="email") Email
+                            input.form__input(type="email" id="email" name="email")
+
+                        .form__group
+                            label.form__label(for="message") Сообщение
+                            textarea.form__textarea(id="message" name="message" placeholder="Напишите что-нибудь...")
+
+                div
+                    +title("Темная форма")
+
+                    form.form.form--dark(action="#" method="POST")
+                        .form__group
+                            label.form__label.form__label--required(for="dark-name") Имя
+                            input.form__input(type="text" id="dark-name" name="dark-name" required)
+                            p.form__error.is-visible Поле обязательно для заполнения
+
+                        .form__group
+                            label.form__label(for="dark-email") Email
+                            input.form__input(type="email" id="dark-email" name="dark-email")
+
+                        .form__group
+                            label.form__label(for="dark-message") Сообщение
+                            textarea.form__textarea(id="dark-message" name="dark-message!" placeholder="Напишите что-нибудь...")
