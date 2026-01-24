@@ -1,0 +1,12 @@
+.set-icon(@name, @path)
+{
+    &.icon-@{name}::before { background-image : url(@path); }
+}
+
+.btn.icon
+{
+    .set-icon(vk, '/assets/icons/networks/vk.svg');
+    .set-icon(github, '/assets/icons/networks/github.svg');
+    .set-icon(gmail, '/assets/icons/networks/gmail.svg');
+    .set-icon(telegram, '/assets/icons/networks/telegram.svg');
+}

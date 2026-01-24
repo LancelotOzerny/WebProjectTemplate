@@ -1,0 +1,187 @@
+// Цвета тем
+@theme-blue-bg: linear-gradient(120deg, #007acc 0%, #00d4ff 100%);
+@theme-blue-color: #fff;
+
+@theme-white-bg: #fff;
+@theme-white-color: #222;
+
+@theme-dark-bg: #222;
+@theme-dark-color: #eee;
+
+@theme-info-bg: #1d9bef;
+@theme-info-color: #fff;
+
+@theme-danger-bg: #ef1d1d;
+@theme-danger-color: #fff;
+
+@theme-warning-bg: #efec1d;
+@theme-warning-color: #222;
+
+@theme-success-bg: #1defbe;
+@theme-success-color: #222;
+
+@theme-secondary-bg: #6c7981;
+@theme-secondary-color: #fff;
+
+// Отступы и размеры
+@btn-padding-small: 5px 10px;
+@btn-padding-medium: 10px 20px;
+@btn-padding-large: 20px 30px;
+
+@btn-font-size-small: 0.875rem;
+@btn-font-size-medium: 1rem;
+@btn-font-size-large: 1.125rem;
+
+@btn-border-radius-base: 2px;
+@btn-border-radius-rounded: 5px;
+@btn-border-radius-circle: 500px;
+@btn-border-radius-square: 0;
+
+// Тени и переходы
+@btn-shadow-base: 0 0 2px #222;
+@btn-shadow-hover: 0 0 4px #222;
+@btn-transition-base: 0.1s;
+@btn-transition-outline: 0.2s;
+@btn-transition-overlay: 0.3s;
+
+.btn
+{
+    display         : inline-block;
+    font-family     : inherit;
+    font-size       : @btn-font-size-medium;
+    line-height     : 1.2;
+    text-align      : center;
+    text-decoration : none;
+    white-space     : nowrap;
+    vertical-align  : middle;
+    cursor          : pointer;
+    box-sizing      : border-box;
+
+    box-shadow      : @btn-shadow-base;
+    border-radius   : @btn-border-radius-base;
+    transition      : @btn-transition-base;
+    margin-bottom   : 7.5px;
+    padding         : @btn-padding-medium;
+    border          : none;
+    outline         : none;
+}
+
+// Модификаторы формы
+.btn
+{
+    &.rounded
+    {
+        border-radius : @btn-border-radius-rounded;
+    }
+
+    &.circle
+    {
+        border-radius : @btn-border-radius-circle;
+    }
+
+    &.square
+    {
+        aspect-ratio: 1 / 1;
+        border-radius : @btn-border-radius-square;
+    }
+}
+
+// Модификаторы размера
+.btn
+{
+    &.small
+    {
+        padding   : @btn-padding-small;
+        font-size : @btn-font-size-small;
+    }
+
+    &.medium
+    {
+        padding   : @btn-padding-medium;
+        font-size : @btn-font-size-medium;
+    }
+
+    &.large
+    {
+        padding   : @btn-padding-large;
+        font-size : @btn-font-size-large;
+    }
+}
+
+// Анимации
+.btn:hover
+{
+    filter : sepia(50%);
+}
+
+.btn:active
+{
+    transform : translateY(5px);
+}
+
+// Темы заливки
+.btn--white    { background-color: @theme-white-bg;     color: @theme-white-color; }
+.btn--dark     { background-color: @theme-dark-bg;      color: @theme-dark-color;  }
+.btn--info     { background-color: @theme-info-bg;      color: @theme-info-color;  }
+.btn--danger   { background-color: @theme-danger-bg;    color: @theme-danger-color; }
+.btn--warning  { background-color: @theme-warning-bg;   color: @theme-warning-color;}
+.btn--success  { background-color: @theme-success-bg;   color: @theme-success-color;}
+.btn--secondary{ background-color: @theme-secondary-bg; color: @theme-secondary-color;}
+.btn--blue     { background: @theme-blue-bg;            color: @theme-blue-color;   }
+
+// Контурный стиль (outline)
+.btn--outline
+{
+    background : none;
+    color      : #222222;
+    border     : 2px solid currentColor;
+    position   : relative;
+    overflow   : hidden;
+    transition : @btn-transition-outline;
+
+    &::before
+    {
+        content    : '';
+        position   : absolute;
+        left       : 0;
+        top        : 0;
+        bottom     : 0;
+        right      : 100%;
+        z-index    : -1;
+        transition : @btn-transition-overlay;
+    }
+
+    &:hover
+    {
+        box-shadow   : @btn-shadow-hover;
+        filter       : none;
+        border-color : #FFFFFF;
+    }
+
+    &:hover::before
+    {
+        right : 0;
+    }
+}
+
+// Темы для контурных кнопок
+.btn--outline
+{
+    &.btn--white::before    { background: @theme-white-bg; }
+    &.btn--dark::before     { background: @theme-dark-bg; }
+    &.btn--info::before     { background: @theme-info-bg; }
+    &.btn--danger::before   { background: @theme-danger-bg; }
+    &.btn--warning::before  { background: @theme-warning-bg; }
+    &.btn--success::before  { background: @theme-success-bg; }
+    &.btn--secondary::before{ background: @theme-secondary-bg; }
+    &.btn--blue::before     { background: @theme-blue-bg; }
+
+    &.btn--white:hover    { color: @theme-white-color; }
+    &.btn--dark:hover     { color: @theme-dark-color; }
+    &.btn--info:hover     { color: @theme-info-color; }
+    &.btn--danger:hover   { color: @theme-danger-color; }
+    &.btn--warning:hover  { color: @theme-warning-color; }
+    &.btn--success:hover  { color: @theme-success-color; }
+    &.btn--secondary:hover{ color: @theme-secondary-color; }
+    &.btn--blue:hover     { color: @theme-blue-color; }
+}

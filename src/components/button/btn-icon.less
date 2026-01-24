@@ -1,0 +1,26 @@
+.btn.icon
+{
+    position: relative;
+
+    &.has-bg
+    {
+        background : none;
+        border: none;
+        box-shadow: none;
+    }
+
+    &::before
+    {
+        content: '';
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+
+        background-size: contain;
+        background-repeat : no-repeat;
+        background-position : center center;
+    }
+}

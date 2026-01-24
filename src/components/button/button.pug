@@ -1,2 +1,23 @@
-mixin button(text = 'click me!', modifier='')
-    a.btn(href="#", class=modifier) #{text}
+mixin button(text='Press me!', modifier='', href='#', type='button', ariaLabel='')
+  -
+    // Формируем классы
+    const classes = ['btn'];
+    if (modifier && modifier.trim()) {
+      classes.push(...modifier.trim().split(/\s+/));
+    }
+
+    // Определяем тег
+    const tag = href && href !== '#' ? 'a' : 'button';
+
+    // Формируем атрибуты
+    const attrs = {
+      class: classes.join(' '),
+      href: tag === 'a' ? href : undefined,
+      type: tag === 'button' ? type : undefined,
+      'aria-label': ariaLabel || text
+    };
+
+  if tag === 'a'
+    a(href=attrs.href, class=attrs.class, aria-label=attrs['aria-label'])= text
+  else
+    button(type=attrs.type, class=attrs.class, aria-label=attrs['aria-label'])= text
