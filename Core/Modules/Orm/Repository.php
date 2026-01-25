@@ -3,30 +3,29 @@
 namespace Modules\Orm;
 
 use Modules\Database\Connection;
-use PDO;
+use Modules\Database\IQueryBuilder;
+use Modules\Database\PdoQueryBuilder;
 
 class Repository
 {
     protected Entity $model;
+    protected \PDO $pdo;
+    protected IQueryBuilder $queryBuilder;
 
     public function __construct(Entity $model)
     {
         $this->model = $model;
+        $this->pdo = Connection::getPdo();
+        $this->queryBuilder = new PdoQueryBuilder();
     }
 
-    public function save() : bool
+    public function findAll() : ?array
     {
-        return true;
-    }
+        $this->queryBuilder->select(['*'])
+            ->from($this->model->getTableName());
 
-    public function findAll() : array
-    {
-        $sql = "SELECT * FROM {$this->model->getTableName()}";
-
-        $stmt = Connection::getPdo()->prepare($sql);
-        $stmt->execute();
-
-        $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $stmp = $this->executeQuery($this->queryBuilder);
+        $rows = $stmp->fetchAll(\PDO::FETCH_ASSOC);
         $models = [];
 
         foreach ($rows as $row)
@@ -44,13 +43,15 @@ class Repository
 
         return $models;
     }
-
-    public function find(int $id): ?Entity
+    public function findById(int $id) : ?Entity
     {
-        $sql = "SELECT * FROM {$this->model->getTableName()} WHERE id = ?";
-        $stmt = Connection::getPdo()->prepare($sql);
-        $stmt->execute([$id]);
-        $row = $stmt->fetch();
+        $this->queryBuilder
+            ->select(['*'])
+            ->from($this->model->getTableName())
+            ->where('id = ?', [$id]);
+
+        $stmp = $this->executeQuery($this->queryBuilder);
+        $row = $stmp->fetch(\PDO::FETCH_ASSOC);
 
         if ($row)
         {
@@ -58,19 +59,36 @@ class Repository
             {
                 $this->model->$key = $value;
             }
+            $this->model->id = (int)$row['id'] ?? null;
 
-            $this->model->id = (int)$row['id'];
             return $this->model;
         }
 
         return null;
     }
 
-
-    public function delete() : bool
+    public function deleteById(int $id) : bool
     {
-        $sql = "DELETE FROM {$this->model->getTableName()} WHERE id = ?";
-        $stmp = Connection::getPdo()->prepare($sql);
-        return $stmp->execute([$this->model->id]);
+        return true;
+    }
+
+
+
+    protected function executeQuery(IQueryBuilder $builder): \PDOStatement
+    {
+        $sql = $builder->getSql();
+        $params = $builder->getParams();
+
+        try
+        {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            return $stmt;
+        }
+        catch (\PDOException $e)
+        {
+            error_log('Query failed: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }

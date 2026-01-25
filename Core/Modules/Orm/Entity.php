@@ -15,30 +15,12 @@ class Entity implements \JsonSerializable
 
     public function getFields(): array
     {
-        return $this->fields;
+        return array_merge(['id' => $this->id], $this->fields);
     }
 
     public function jsonSerialize(): mixed
     {
-        return array_merge(['id' => $this->id], $this->getFields());
-    }
-
-    public function save() : bool
-    {
-        $repo = new Repository($this);
-        return $repo->save();
-    }
-
-    public function findById(int $id) : ?Entity
-    {
-        $repo = new Repository($this);
-        return $repo->find($id);
-    }
-
-    public function delete() : bool
-    {
-        $repo = new Repository($this);
-        return $repo->delete();
+        return $this->getFields();
     }
 
     public function __get(string $name)
