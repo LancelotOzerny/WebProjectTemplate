@@ -12,4 +12,11 @@ class UserController
         header('Content-Type: application/json');
         echo json_encode($itemsList);
     }
+
+    public function findById($id) : void
+    {
+        $item = new Repository(new User())->findById($id);
+        header('Content-Type: application/json');
+        echo json_encode($item);
+    }
 }
