@@ -1,0 +1,30 @@
+extends ./../../layouts/main
+
+block content
+    div.page__block
+        div.page--height-100.page__container.flex.align-items--center
+            form.form(action="/auth/register" method="POST")
+                +title('Регистрация', 'page-title--small text--center mx-auto')
+
+                .form__group
+                    label.form__label.form__label--required(for="email") Email
+                    input.form__input(type="email" id="email" name="email" required)
+                    p.form__error.is-hidden Введите корректный email
+
+                .form__group
+                    label.form__label.form__label--required(for="password") Пароль
+                    input.form__input(type="password" id="password" name="password" required minlength="6")
+                    p.form__error.is-hidden Минимум 6 символов
+
+                .form__group
+                    label.form__label.form__label--required(for="password_confirm") Подтверждение пароля
+                    input.form__input(type="password" id="password_confirm" name="password_confirm" required)
+                    p.form__error.is-hidden Пароли должны совпадать
+
+                .form__group.text--center.mt-2
+                    +button('Зарегистрироваться', 'btn--upper btn--large btn--success', '#', 'submit')
+
+                .text--center.mt-1
+                    a.text--muted(href="/auth/") Уже есть аккаунт? Войти
+
+    script(type="module", src="/assets/scripts/register.js")

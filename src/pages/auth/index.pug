@@ -1,23 +1,25 @@
 extends ./../../layouts/main
 
-include ./../../components/button/button
-include ./../../components/page-title/page-title
-
 block content
-
-    div.page__block.py-5
-        div.page__container
-            form.form(action="#" method="POST")
+    div.page__block
+        div.page--height-100.page__container.flex.align-items--center
+            form.form(action="/auth/login" method="POST")
                 +title('Авторизация', 'page-title--small text--center mx-auto')
 
                 .form__group
-                    label.form__label.form__label--required(for="name") Имя
-                    input.form__input(type="text" id="name" name="name" required)
-                    p.form__error.is-visible Поле обязательно для заполнения
+                    label.form__label.form__label--required(for="email") Email
+                    input.form__input(type="email" id="email" name="email" required)
+                    p.form__error.is-hidden Введите корректный email
 
                 .form__group
-                    label.form__label(for="email") Email
-                    input.form__input(type="email" id="email" name="email")
+                    label.form__label.form__label--required(for="password") Пароль
+                    input.form__input(type="password" id="password" name="password" required)
+                    p.form__error.is-hidden Поле обязательно для заполнения
 
-                .form__group
-                    +button('Войти', 'btn--upper btn--large btn--info text--center')
+                .form__group.text--center.mt-2
+                    +button('Войти', 'btn--upper btn--large btn--info')
+
+                .text--center.mt-1
+                    a.text--muted(href="/auth/register.html") Нет аккаунта? Зарегистрироваться
+
+    script(type="module", src="/assets/scripts/auth.js")
