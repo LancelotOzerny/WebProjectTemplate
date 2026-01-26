@@ -6,10 +6,15 @@ test/
 public_html/
 
 !public_html/assets/*.php
-!public_html/assets/.htaccess
+
+!*.htaccess
+!*.php
+
 
 *.html
 *.css
 *.map
+
 *.js
+src/scripts/
 !gulpfile.js

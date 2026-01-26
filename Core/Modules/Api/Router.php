@@ -31,9 +31,7 @@ class Router
 
     private static function getNormalizedPath($requestUri) : string
     {
-        $result = str_replace('/api/', '', $requestUri);
-        $result = parse_url($result, PHP_URL_PATH);
-
+        $result = parse_url($requestUri, PHP_URL_PATH);
         $result = '/' . ltrim($result, '/');
         $result = preg_replace('/\/+/', '/', $result);
         $result = rtrim($result, '/');
