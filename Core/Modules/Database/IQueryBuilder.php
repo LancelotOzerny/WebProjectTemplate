@@ -13,4 +13,5 @@ interface IQueryBuilder
     public function offset(int $offset): self;
     public function getSql(): string;
     public function getParams(): array;
+    public function clearParams(): self;
 }

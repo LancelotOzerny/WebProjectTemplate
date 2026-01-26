@@ -78,10 +78,13 @@ class Repository
             ->from($this->model->getTableName())
             ->where('id = ?', [$id]);
 
-        try {
+        try
+        {
             $stmt = $this->executeQuery($this->queryBuilder);
-            return $stmt->rowCount() > 0; // true, если хотя бы одна строка была удалена
-        } catch (\PDOException $e) {
+            return $stmt->rowCount() > 0;
+        }
+        catch (\PDOException $e)
+        {
             error_log('Delete failed: ' . $e->getMessage());
             return false;
         }
@@ -164,17 +167,16 @@ class Repository
     {
         $sql = $builder->getSql();
         $params = $builder->getParams();
-
-        echo '<pre>';
-        print_r($sql);
-        echo '</pre>';
+        $builder->clearParams();
 
         try
         {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($params);
             return $stmt;
-        } catch (\PDOException $e) {
+        }
+        catch (\PDOException $e)
+        {
             error_log('Query failed: ' . $e->getMessage());
             throw $e;
         }

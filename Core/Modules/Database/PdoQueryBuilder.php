@@ -78,7 +78,7 @@ class PdoQueryBuilder implements IQueryBuilder
 
     public function delete($table) : self
     {
-        $this->sql = "DELETE FROM $table";
+        $this->sql = " DELETE";
         return $this;
     }
 
@@ -121,6 +121,12 @@ class PdoQueryBuilder implements IQueryBuilder
     public function getSql(): string
     {
         return $this->sql;
+    }
+
+    public function clearParams() : self
+    {
+        $this->params = [];
+        return $this;
     }
 
     public function getParams(): array
