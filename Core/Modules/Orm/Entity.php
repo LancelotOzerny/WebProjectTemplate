@@ -5,7 +5,7 @@ namespace Modules\Orm;
 class Entity implements \JsonSerializable
 {
     protected string $table;
-    public ?int $id;
+    public ?int $id = null;
     protected array $fields = [];
 
     public function getTableName(): string
