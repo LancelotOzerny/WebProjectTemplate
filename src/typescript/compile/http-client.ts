@@ -73,22 +73,23 @@ export class HttpClient
         try
         {
             let fullUrl = this.baseUrl + url;
-
-            // Параметры для fetch
-            const config: RequestInit = {
+            let config: RequestInit = {
                 method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {}
             };
 
-            // Для методов с телом запроса (POST, PUT)
-            if (['POST', 'PUT'].includes(method) && data)
+            if (['POST', 'PUT'].includes(method))
             {
-                config.body = JSON.stringify(data);
+                (config.headers as Record<string, string>)['Content-Type'] =
+                    'application/x-www-form-urlencoded';
+
+                const searchParams = new URLSearchParams();
+                Object.entries(data ?? {}).forEach(([key, value]) => {
+                    searchParams.append(key, String(value));
+                });
+                config.body = searchParams.toString();
             }
 
-            // Для GET и DELETE добавляем параметры в URL
             if ((method === 'GET' || method === 'DELETE') && data)
             {
                 const searchParams = new URLSearchParams();
@@ -106,10 +107,8 @@ export class HttpClient
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            // Парсим JSON
             const result = await response.json();
 
-            // Вызываем обработчик успеха
             if (onSuccess)
             {
                 onSuccess(result);
@@ -122,11 +121,11 @@ export class HttpClient
                 : 0;
             const message = error instanceof Error ? error.message : String(error);
 
-            // Вызываем обработчик ошибки
             if (onFailure)
             {
                 onFailure(status, message);
-            } else
+            }
+            else
             {
                 console.error('HTTP Request Error:', status, message);
             }
