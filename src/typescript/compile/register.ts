@@ -8,7 +8,7 @@ function handleRegister(event: Event): void
     const messageManager = new MessageManager('#form-errors');
     messageManager.clearAll();
 
-    const api = new HttpClient('https://cs224814.tw1.ru/api');
+    const api = new HttpClient();
 
     const email = (document.getElementById('email') as HTMLInputElement).value;
     const password = (document.getElementById('password') as HTMLInputElement).value;
@@ -27,7 +27,7 @@ function handleRegister(event: Event): void
     }
 
     api.post(
-        '/auth/register/',
+        '/api/auth/register/',
         {
             email,
             password

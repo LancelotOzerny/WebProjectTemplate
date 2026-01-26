@@ -2,7 +2,7 @@ export class HttpClient
 {
     private baseUrl: string;
 
-    constructor(baseUrl: string)
+    constructor(baseUrl: string = '')
     {
         this.baseUrl = baseUrl.trim().replace(/\/$/, ''); // Удаляем слэш в конце
     }
