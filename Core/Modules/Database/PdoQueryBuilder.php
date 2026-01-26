@@ -61,6 +61,63 @@ class PdoQueryBuilder implements IQueryBuilder
         return $this;
     }
 
+    /**
+     * Формирует запрос INSERT INTO
+     * @param string $table Имя таблицы
+     * @param array $columns Массив имён колонок (например, ['name', 'email'])
+     * @return self
+     */
+    public function insert(string $table, array $columns): self
+    {
+        $colList = implode(', ', $columns);
+        $placeholders = implode(', ', array_fill(0, count($columns), '?'));
+
+        $this->sql = "INSERT INTO $table ($colList) VALUES ($placeholders)";
+        return $this;
+    }
+
+    public function delete($table) : self
+    {
+        $this->sql = "DELETE FROM $table";
+        return $this;
+    }
+
+    public function set(array $data): self
+    {
+        $setParts = [];
+        foreach ($data as $column => $value) {
+            $setParts[] = "$column = ?";
+            $this->params[] = $value;
+        }
+
+        $setClause = implode(', ', $setParts);
+        $this->sql .= " SET $setClause";
+
+        return $this;
+    }
+
+    /**
+     * Формирует запрос UPDATE
+     * @param string $table Имя таблицы
+     * @return self
+     */
+    public function update(string $table): self
+    {
+        $this->sql = "UPDATE $table";
+        return $this;
+    }
+
+    /**
+     * Добавляет значения для INSERT (должен вызываться после insert())
+     * @param array $values Массив значений в порядке, соответствующем колонкам
+     * @return self
+     */
+    public function values(array $values): self
+    {
+        $this->params = array_merge($this->params, $values);
+        return $this;
+    }
+
     public function getSql(): string
     {
         return $this->sql;
